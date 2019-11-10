@@ -1,18 +1,24 @@
-library(rgdal)
-library(stringr)
-library(ggplot2)
-library(lubridate)
-library(gganimate)
-library(gifski)
-devtools::install_github("thomasp85/transformr")
-library(transformr)
-setwd("Desktop/RNR/")
+library(rgdal)              # Cargar los .kml
+library(stringr)            # Manejo de cadenas de texto.
+library(ggplot2)            # Graficar.
+library(lubridate)          # Manejo de Fechas.
+library(gganimate)          # Creación de Gif.
+library(gifski)             # Creación de Gif.
+devtools::install_github("thomasp85/transformr") # Se tiene que instalar este paquete para que no generé problemas al crear
+library(transformr)                              # el gif.
 
-archivos<-dir()
+# Modificamos la ruta de trabajo.
+setwd("Desktop/RNR/") 
+
+# Revisamos los 
+archivos<-dir() 
 archivos<-archivos[-1]
 archivos<-substring(archivos,9,18)
+
+# Inicializamos variables.
 con<-0
 data<-data.frame()
+
 for (i in archivos){
   con <- con+1
   lines <- readOGR(paste0("history-",i,".kml"),paste0("Location history from ",i," to ",i," "), require_geomType="wkbLineString")
